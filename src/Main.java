@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class Main {
@@ -9,7 +10,7 @@ public class Main {
         while (true) {
             System.out.println("Выберите операцию:");
             String command = scanner.nextLine();
-            if (command.equals("end")){
+            if (command.equals("end")) {
                 break;
             }
             int operation = Integer.parseInt(command);
@@ -22,6 +23,9 @@ public class Main {
                     break;
                 case 3:
                     delete();
+                    break;
+                case 4:
+                    search();
                     break;
             }
         }
@@ -55,6 +59,19 @@ public class Main {
         }
         for (int i = 0; i < list.size(); i++) {
             System.out.println((i + 1) + ". " + list.get(i));
+        }
+    }
+
+    public static void search() {
+        System.out.println("Введите текст для поиска:");
+        String queryLower = scanner.nextLine().toLowerCase(Locale.ROOT);
+        System.out.println("Найдено:");
+        for (int i = 0; i < list.size(); i++) {
+            String item = list.get(i);
+            String itemLower = item.toLowerCase(Locale.ROOT);
+            if (itemLower.contains(queryLower)) {
+                System.out.println((i + 1) + ". " + item);
+            }
         }
     }
 }
